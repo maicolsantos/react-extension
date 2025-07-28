@@ -4,12 +4,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:watch": "vite build --watch",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "vite-plugin-extension-reloader": "^1.1.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

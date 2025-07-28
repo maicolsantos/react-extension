@@ -79,8 +79,11 @@ function App() {
         <div style={{ textAlign: 'center' }}>
           <button
             onClick={() => {
-              console.log('##', document.getElementById('inicio-manchetes'));
-              setCount(count + 1)
+              if (document) {
+                const headingMainAnchor = document.querySelector('.heading-main a');
+                if (headingMainAnchor) headingMainAnchor.textContent = 'Bem vindo ao Sapo Studio';
+              }
+              setCount(count + 1);
             }}
             style={{
               backgroundColor: '#007bff',
