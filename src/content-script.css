@@ -1,7 +1,7 @@
 /* Content script CSS - injected styles for React components */
 /* Use specific selectors to avoid conflicts with host page */
 
-#react-sidebar-root {
+#sapo-studio-root {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   line-height: 1.5 !important;
   font-weight: 400 !important;
@@ -13,57 +13,57 @@
   overflow: auto !important;
 }
 
-#react-sidebar-root * {
+#sapo-studio-root * {
   box-sizing: border-box !important;
 }
 
-#react-sidebar-root button {
+#sapo-studio-root button {
   font-family: inherit !important;
   cursor: pointer !important;
 }
 
-#react-sidebar-root button:hover {
+#sapo-studio-root button:hover {
   opacity: 0.8 !important;
   transform: translateY(-1px) !important;
   transition: all 0.2s ease !important;
 }
 
 /* Reset margins and paddings for common elements within sidebar */
-#react-sidebar-root h1,
-#react-sidebar-root h2,
-#react-sidebar-root h3,
-#react-sidebar-root h4,
-#react-sidebar-root h5,
-#react-sidebar-root h6 {
+#sapo-studio-root h1,
+#sapo-studio-root h2,
+#sapo-studio-root h3,
+#sapo-studio-root h4,
+#sapo-studio-root h5,
+#sapo-studio-root h6 {
   margin: 0 !important;
   padding: 0 !important;
   font-family: inherit !important;
 }
 
-#react-sidebar-root p {
+#sapo-studio-root p {
   margin: 0 !important;
   padding: 0 !important;
   font-family: inherit !important;
 }
 
-#react-sidebar-root div {
+#sapo-studio-root div {
   font-family: inherit !important;
 }
 
-#react-sidebar-root input,
-#react-sidebar-root textarea,
-#react-sidebar-root select {
+#sapo-studio-root input,
+#sapo-studio-root textarea,
+#sapo-studio-root select {
   font-family: inherit !important;
 }
 
 /* Ensure no external styles affect our components */
-#react-sidebar-root input {
+#sapo-studio-root input {
   border: 1px solid #ddd !important;
   padding: 8px !important;
   border-radius: 4px !important;
 }
 
-#react-sidebar-root textarea {
+#sapo-studio-root textarea {
   border: 1px solid #ddd !important;
   padding: 8px !important;
   border-radius: 4px !important;

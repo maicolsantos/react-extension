@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "React Sidebar Extension",
+  "name": "Sapo Studio Extension",
   "version": "1.0.0",
-  "description": "A browser extension with a React sidebar",
+  "description": "A Browser extension for Sapo Studio",
   "permissions": ["activeTab", "scripting"],
   "background": {
     "service_worker": "background.js"

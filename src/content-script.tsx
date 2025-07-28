@@ -5,7 +5,7 @@ import './content-script.css'
 
 // Mount function that will be called by content script
 function mountReactSidebar() {
-  const container = document.getElementById('react-sidebar-root')
+  const container = document.getElementById('sapo-studio-root')
   if (container && !container.hasChildNodes()) {
     const root = createRoot(container)
     root.render(React.createElement(App))

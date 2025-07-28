@@ -45,7 +45,7 @@ function createSidebar() {
 
   // Create container for React app
   const reactContainer = document.createElement('div');
-  reactContainer.id = 'react-sidebar-root';
+  reactContainer.id = 'sapo-studio-root';
   reactContainer.className = 'react-sidebar-content';
 
   sidebar.appendChild(closeBtn);

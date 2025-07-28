@@ -44,7 +44,7 @@ function App() {
         marginBottom: '20px',
         color: '#333'
       }}>
-        React Sidebar
+        Sapo Studio
       </h1>
 
       {pageInfo && (
