@@ -1,127 +1,60 @@
-import { useEffect, useState } from 'react';
-
-interface PageInfo {
-  title: string;
-  url: string;
-  timestamp: string;
-}
+import { useEffect, useState } from "react";
+import { Posts } from "./components/Posts";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [pageInfo, setPageInfo] = useState<PageInfo | null>(null)
-  const [notes, setNotes] = useState('')
+  const [postsData, setPostsData] = useState<any>();
+
+  // const getBlockHighlightsTrackerLinks = async () => {
+  //   const trackerLinksData = Array.from(document.querySelectorAll('.block-highlights [data-trackerlink]')).map(i => Array.from(i.attributes)[3].value)
+  //   return trackerLinksData
+  // }
+
+  const getPostsData = async () => {
+    const response = await fetch(`http://localhost:3001/posts`)
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+
+    const data = await response.json()
+    setPostsData(data)
+  }
+
+  // const getBlockDataCMS = async () => {
+  //   const trackerLinks = await getBlockHighlightsTrackerLinks()
+  //   console.log('💀 ~ getBlockDataCMS ~ trackerLinks:', trackerLinks)
+
+  //   const response = await fetch('http://localhost:3001/block?where[name][equals]=Início%20-%20Manchetes&page=1', {
+  //     // credentials: 'include',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       // 'x-api-code': '6d840d72-82b7-4f72-8edb-14b27cacba9c',
+  //       // 'x-api-key': '5f69796e-2505-479c-a838-a7df0bd95b95'
+  //     }
+  //   })
+
+  //   if (!response.ok) {
+  //     throw new Error('Network response was not ok')
+  //   }
+
+  //   const data = await response.json()
+  //   return data
+  // }
 
   useEffect(() => {
-    // Get page information from parent window
-    try {
-      if (window.parent && window.parent !== window) {
-        const parentDoc = window.parent.document;
-        setPageInfo({
-          title: parentDoc.title,
-          url: parentDoc.location.href,
-          timestamp: new Date().toLocaleString()
-        });
-      }
-    } catch (error) {
-      console.log('Cannot access parent page info due to CORS');
-      setPageInfo({
-        title: 'Current Page',
-        url: window.location.href,
-        timestamp: new Date().toLocaleString()
-      });
-    }
-  }, []);
+    getPostsData()
+  }, [])
+
+  console.log(postsData?.docs);
+
 
   return (
-    <div style={{
-      padding: '20px',
-      height: '100vh',
-      backgroundColor: '#f8f9fa',
-      overflow: 'auto'
-    }}>
-      <h1 style={{
-        fontSize: '24px',
-        marginBottom: '20px',
-        color: '#333'
-      }}>
-        Sapo Studio
-      </h1>
-
-      {pageInfo && (
-        <div style={{
-          backgroundColor: 'white',
-          padding: '15px',
-          borderRadius: '8px',
-          marginBottom: '20px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-        }}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#555' }}>Page Info</h3>
-          <p style={{ margin: '5px 0', fontSize: '14px' }}>
-            <strong>Title:</strong> {pageInfo.title}
-          </p>
-          <p style={{ margin: '5px 0', fontSize: '14px', wordBreak: 'break-all' }}>
-            <strong>URL:</strong> {pageInfo.url}
-          </p>
-          <p style={{ margin: '5px 0', fontSize: '14px' }}>
-            <strong>Opened:</strong> {pageInfo.timestamp}
-          </p>
-        </div>
-      )}
-
-      <div style={{
-        backgroundColor: 'white',
-        padding: '15px',
-        borderRadius: '8px',
-        marginBottom: '20px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-      }}>
-        <h3 style={{ margin: '0 0 15px 0', color: '#555' }}>Counter Example</h3>
-        <div style={{ textAlign: 'center' }}>
-          <button
-            onClick={() => {
-              if (document) {
-                const headingMainAnchor = document.querySelector('.heading-main a');
-                if (headingMainAnchor) headingMainAnchor.textContent = 'Bem vindo ao Sapo Studio';
-              }
-              setCount(count + 1);
-            }}
-            style={{
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              fontSize: '16px'
-            }}
-          >
-            Count: {count}
-          </button>
-        </div>
-      </div>
-
-      <div style={{
-        backgroundColor: 'white',
-        padding: '15px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-      }}>
-        <h3 style={{ margin: '0 0 15px 0', color: '#555' }}>Notes</h3>
-        <textarea
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          placeholder="Add your notes here..."
-          style={{
-            width: '100%',
-            height: '150px',
-            padding: '10px',
-            border: '1px solid #ddd',
-            borderRadius: '5px',
-            resize: 'vertical',
-            fontFamily: 'inherit'
-          }}
-        />
-      </div>
+    <div className="p-4">
+      <ul>
+        {(postsData?.docs || [])?.map((post: any) => (
+          <Posts key={post.id} data={post} />
+        ))}
+      </ul>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 // Content script - runs on every page
-console.log('React Sidebar Extension loaded');
+console.log('Sapo Studio Extension loaded');
 
 let sidebarMounted = false;
 let sidebarVisible = false;
@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 function toggleSidebar() {
-  const existingSidebar = document.getElementById('react-extension-sidebar');
+  const existingSidebar = document.getElementById('sapo-studio-extension');
 
   if (existingSidebar) {
     if (sidebarVisible) {
@@ -28,27 +28,36 @@ function toggleSidebar() {
 
 function createSidebar() {
   // Avoid creating multiple sidebars
-  if (document.getElementById('react-extension-sidebar')) {
+  if (document.getElementById('sapo-studio-extension')) {
     return;
   }
 
   // Create sidebar container
   const sidebar = document.createElement('div');
-  sidebar.id = 'react-extension-sidebar';
-  sidebar.className = 'react-extension-sidebar';
+  sidebar.id = 'sapo-studio-extension';
+  sidebar.className = 'sapo-studio-extension';
+
+   const header = document.createElement('header');
+  header.id = 'sapo-studio-header';
+  header.className = 'sapo-studio-header';
+
+   const h1 = document.createElement('h1');
+   h1.innerText = 'Sapo Studio';
+   header.appendChild(h1);
 
   // Create close button
   const closeBtn = document.createElement('button');
   closeBtn.innerHTML = '×';
-  closeBtn.className = 'react-sidebar-close';
+  closeBtn.className = 'sapo-studio-sidebar-close';
   closeBtn.onclick = () => hideSidebar();
+  header.appendChild(closeBtn);
 
   // Create container for React app
   const reactContainer = document.createElement('div');
   reactContainer.id = 'sapo-studio-root';
-  reactContainer.className = 'react-sidebar-content';
+  reactContainer.className = 'sapo-studio-content';
 
-  sidebar.appendChild(closeBtn);
+  sidebar.appendChild(header);
   sidebar.appendChild(reactContainer);
   document.body.appendChild(sidebar);
 
@@ -62,20 +71,18 @@ function createSidebar() {
 }
 
 function showSidebar() {
-  const sidebar = document.getElementById('react-extension-sidebar');
+  const sidebar = document.getElementById('sapo-studio-extension');
   if (sidebar) {
     sidebar.style.display = 'block';
-    document.body.style.marginRight = '400px';
+    document.body.style.marginRight = '500px';
     document.body.style.transition = 'margin-right 0.3s ease';
     sidebarVisible = true;
   }
 }
 
 function hideSidebar() {
-
-  const sidebar = document.getElementById('react-extension-sidebar');
+  const sidebar = document.getElementById('sapo-studio-extension');
   if (sidebar) {
-    console.log('Hiding sidebar');
     sidebar.parentNode.removeChild(sidebar);
     document.body.style.marginRight = '0';
     sidebarVisible = false;

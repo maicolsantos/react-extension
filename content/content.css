@@ -1,74 +1,63 @@
 /* Styles for the sidebar container */
-.react-extension-sidebar {
+.sapo-studio-extension {
   position: fixed !important;
   top: 0 !important;
   right: 0 !important;
-  width: 400px !important;
+  width: 500px !important;
   height: 100vh !important;
-  background: white !important;
+  background: #212830 !important;
   box-shadow: -2px 0 10px rgba(0,0,0,0.1) !important;
   z-index: 2147483647 !important; /* Maximum z-index */
-  border-left: 1px solid #e0e0e0 !important;
   display: block !important;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   overflow: hidden !important;
 }
 
+.sapo-studio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  border-bottom: 1px solid #333e4a !important;
+}
+
+.sapo-studio-header h1 {
+  color: white !important;
+  font-size: 16px !important;
+  margin: 0 !important;
+  font-weight: bold !important;
+}
+
 /* Close button styles */
-.react-sidebar-close {
-  position: absolute !important;
-  top: 10px !important;
-  right: 10px !important;
+.sapo-studio-sidebar-close {
   width: 30px !important;
   height: 30px !important;
   border: none !important;
-  background: #f0f0f0 !important;
+  background: #212830 !important;
   border-radius: 50% !important;
   cursor: pointer !important;
   font-size: 18px !important;
   line-height: 1 !important;
   z-index: 2147483648 !important;
-  color: #666 !important;
+  color: #aeaeae !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
-.react-sidebar-close:hover {
+.sapo-studio-sidebar-close:hover {
   background: #e0e0e0 !important;
   color: #333 !important;
 }
 
 /* React content container */
-.react-sidebar-content {
+.sapo-studio-content {
   width: 100% !important;
   height: 100% !important;
   overflow: auto !important;
-  padding-top: 50px !important; /* Space for close button */
 }
 
 /* Reset styles for React content to prevent host page interference */
-.react-sidebar-content * {
+.sapo-studio-content * {
   box-sizing: border-box !important;
-}
-
-.react-sidebar-content h1,
-.react-sidebar-content h2,
-.react-sidebar-content h3,
-.react-sidebar-content h4,
-.react-sidebar-content h5,
-.react-sidebar-content h6 {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.react-sidebar-content p {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.react-sidebar-content button {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }

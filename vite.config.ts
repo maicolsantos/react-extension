@@ -10,7 +10,7 @@ export default defineConfig({
     plugins: [
         react(),
         extensionReloaderBuildStep("manifest.json"),
-        // extensionReloaderWatchExternal("src/extension/**/*"),  // This is optional, but will watch for changes in your manifest
+        // extensionReloaderWatchExternal("src/**/*"),  // This is optional, but will watch for changes in your manifest
         // extensionReloaderWebSocket(),
         copy({
             targets: [
@@ -44,3 +44,7 @@ export default defineConfig({
         global: 'globalThis',
     }
 });
+function extensionReloaderWatchExternal(arg0: string): import("vite").PluginOption {
+    throw new Error('Function not implemented.');
+}
+
